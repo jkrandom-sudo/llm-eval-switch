@@ -33,8 +33,8 @@ A standalone Electron desktop app for configuring and benchmarking LLMs across 1
 
 | Platform | Download |
 |----------|----------|
-| macOS (Apple Silicon / Intel) | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch-1.0.0.dmg) |
-| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch%20Setup%201.0.0.exe) |
+| macOS (Apple Silicon / Intel) | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch-1.0.0.dmg) |
+| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch.Setup.1.0.0.exe) |
 
 > macOS: After downloading, open the DMG and drag `LLM Eval Switch.app` to `/Applications`. First launch may take a few seconds while macOS verifies the app.
 >
@@ -117,8 +117,8 @@ Requires `datasets/` and `eval_config.yaml` in the project root.
 
 | 平台 | 下载链接 |
 |------|----------|
-| macOS（Apple Silicon / Intel） | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch-1.0.0.dmg) |
-| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch%20Setup%201.0.0.exe) |
+| macOS（Apple Silicon / Intel） | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch-1.0.0.dmg) |
+| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch.Setup.1.0.0.exe) |
 
 > macOS：下载后打开 DMG，将 `LLM Eval Switch.app` 拖入 `/Applications` 即可。首次打开时 macOS 会进行安全验证，可能需要等待几秒。
 >
@@ -192,8 +192,8 @@ dimensions:
 
 | 平台 | 下載連結 |
 |------|----------|
-| macOS（Apple Silicon / Intel） | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch-1.0.0.dmg) |
-| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch%20Setup%201.0.0.exe) |
+| macOS（Apple Silicon / Intel） | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch-1.0.0.dmg) |
+| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch.Setup.1.0.0.exe) |
 
 > macOS：下載後開啟 DMG，將 `LLM Eval Switch.app` 拖入 `/Applications` 即可。首次開啟時 macOS 會進行安全驗證，可能需要等待數秒。
 >
@@ -245,8 +245,8 @@ npm run dist:win   # Windows 安裝程式 + 可攜版
 
 | プラットフォーム | ダウンロード |
 |------------------|--------------|
-| macOS（Apple Silicon / Intel） | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch-1.0.0.dmg) |
-| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch%20Setup%201.0.0.exe) |
+| macOS（Apple Silicon / Intel） | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch-1.0.0.dmg) |
+| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch.Setup.1.0.0.exe) |
 
 > macOS：DMG を開き、`LLM Eval Switch.app` を `/Applications` にドラッグしてください。初回起動時は macOS の検証に数秒かかることがあります。
 >
@@ -294,8 +294,8 @@ npm run dist:win   # Windows インストーラー + ポータブル
 
 | 플랫폼 | 다운로드 |
 |--------|----------|
-| macOS (Apple Silicon / Intel) | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch-1.0.0.dmg) |
-| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM%20Eval%20Switch%20Setup%201.0.0.exe) |
+| macOS (Apple Silicon / Intel) | [LLM Eval Switch-1.0.0.dmg](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch-1.0.0.dmg) |
+| Windows | [LLM Eval Switch Setup 1.0.0.exe](https://github.com/jkrandom-sudo/llm-eval-switch/releases/download/v1.0.0/LLM.Eval.Switch.Setup.1.0.0.exe) |
 
 > macOS: DMG를 열고 `LLM Eval Switch.app`을 `/Applications`로 드래그하세요. 최초 실행 시 macOS 검증에 몇 초 소요될 수 있습니다.
 >
