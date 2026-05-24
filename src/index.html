@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Eval Switch</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app">
+    <div id="toastContainer" class="toast-container"></div>
+    <div id="startupToast" class="startup-toast">
+      <div class="startup-toast-header">
+        <div class="startup-spinner"></div>
+        <strong id="startupTitle" data-i18n="startupLoadingTitle">Loading workspace</strong>
+      </div>
+      <span id="startupHint" data-i18n="startupLoadingHint">The app is ready. Models and benchmark dimensions are loading in the background.</span>
+    </div>
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="mark">E</div>
+        <div>
+          <h1>LLM Eval Switch</h1>
+          <p>Model benchmark console</p>
+        </div>
+      </div>
+      <nav>
+        <button class="nav active" data-panel="run">评测</button>
+        <button class="nav" data-panel="models">模型</button>
+        <button class="nav" data-panel="datasets">题库</button>
+        <button class="nav" data-panel="reports">报告</button>
+      </nav>
+      <div class="side-section model-section">
+        <div class="section-heading">
+          <div class="section-title" data-i18n="modelsShort">模型</div>
+          <button id="toggleModels" class="tiny" type="button">展开</button>
+        </div>
+        <div id="modelChecks" class="check-list"></div>
+      </div>
+      <div id="dimensionSection" class="side-section grow dimension-section">
+        <div class="section-heading">
+          <div class="section-title" data-i18n="dimensionsQuestions">维度 / 题数</div>
+          <button id="toggleDimensions" class="tiny" type="button">展开</button>
+        </div>
+        <div class="preset-row" aria-label="评测模式">
+          <button class="preset active" data-preset="fast" type="button" data-i18n="presetFast">急速 25</button>
+          <button class="preset" data-preset="normal" type="button" data-i18n="presetNormal">普通 50</button>
+          <button class="preset" data-preset="deep" type="button" data-i18n="presetDeep">深度 100</button>
+        </div>
+        <div class="custom-count">
+          <input id="customQuestionCount" type="number" min="1" placeholder="自定义题数" data-i18n-placeholder="customQuestionCount">
+          <button id="applyCustomCount" type="button" data-i18n="apply">应用</button>
+        </div>
+        <div id="dimensionChecks" class="check-list"></div>
+      </div>
+      <div class="side-footer">
+        <span id="statusDot"></span>
+        <span id="statusText">Ready</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h2 id="pageTitle">评测控制台</h2>
+          <p id="pageSubtitle">选择模型与维度，运行单模型或多模型评测。</p>
+        </div>
+        <div class="top-actions">
+          <select id="languageSelect" aria-label="Language">
+            <option value="en">English</option>
+            <option value="zh-CN">简体中文</option>
+            <option value="zh-TW">繁體中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="es">Español</option>
+          </select>
+          <input id="outputDir" value="results" aria-label="Output directory">
+          <button id="chooseOutput">选择目录</button>
+        </div>
+      </header>
+
+      <div class="panel-container">
+      <section class="panel active" id="panel-run">
+        <div class="cards">
+          <div class="card metric">
+            <span data-i18n="modelCount">模型数</span>
+            <strong id="modelCount">0</strong>
+          </div>
+          <div class="card metric">
+            <span data-i18n="dimensionCount">维度数</span>
+            <strong id="dimensionCount">0</strong>
+          </div>
+          <div class="card metric">
+            <span data-i18n="progress">进度</span>
+            <strong id="progressText">0%</strong>
+          </div>
+        </div>
+        <div class="card">
+          <div class="run-row">
+            <div>
+              <div class="section-title" data-i18n="runSettings">运行设置</div>
+              <p class="muted" data-i18n="runSettingsHint">多个模型会并行评测。超时或接口报错会自动重试，超过上限后仅终止对应模型。</p>
+            </div>
+            <label class="compact-field"><span data-i18n="timeoutSeconds">超时秒数</span><input id="timeoutSeconds" type="number" min="5" value="60"></label>
+            <label class="compact-field"><span data-i18n="retryLimit">重试次数</span><input id="retryLimit" type="number" min="0" value="10"></label>
+            <button class="primary" id="runButton">开始评测</button>
+            <button id="abortButton">停止</button>
+          </div>
+          <div class="mode-row">
+            <label class="mode-card">
+              <input id="evalModeComprehensive" type="radio" name="evalMode" value="comprehensive" checked>
+              <span>
+                <strong data-i18n="comprehensiveEvalTitle">综合评测</strong>
+                <small data-i18n="comprehensiveEvalHint">运行所选维度题目，并默认记录性能指标</small>
+              </span>
+            </label>
+            <label class="mode-card performance-mode">
+              <input id="evalModePerformance" type="radio" name="evalMode" value="performance">
+              <span>
+                <strong data-i18n="performanceEvalTitle">性能评测</strong>
+                <small data-i18n="performanceOnly">仅运行模型性能测评</small>
+              </span>
+            </label>
+          </div>
+          <div class="progress"><div id="progressBar"></div></div>
+        </div>
+        <div class="card">
+          <div class="section-title" data-i18n="scorePanelTitle">综合评分</div>
+          <div id="scorePanel" class="score-panel empty" data-i18n="scorePanelEmpty">评测完成后展示每个模型的维度得分、总分和排名。</div>
+        </div>
+        <div class="card">
+          <div class="section-title" data-i18n="dimensionProgress">维度进度</div>
+          <div id="dimensionProgress" class="dimension-progress"></div>
+        </div>
+        <div class="split">
+          <div class="card">
+            <div class="section-title" data-i18n="results">结果</div>
+            <table>
+              <thead><tr><th data-i18n="model">模型</th><th data-i18n="overall">总分</th><th data-i18n="htmlReport">HTML 报告</th></tr></thead>
+              <tbody id="resultRows"></tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="section-title" data-i18n="log">日志</div>
+            <pre id="log"></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-models">
+        <div class="card">
+          <div class="section-heading">
+            <div class="section-title" data-i18n="modelConfig">模型配置</div>
+            <button id="newModel" class="tiny" type="button">新增模型</button>
+          </div>
+          <div class="form-grid">
+            <label><span data-i18n="name">名称</span><input id="modelName"></label>
+            <label><span data-i18n="apiFormat">接口格式</span><select id="apiFormat"><option value="openai">OpenAI Compatible</option><option value="anthropic">Anthropic Messages</option></select></label>
+            <label>Base URL<input id="baseUrl" placeholder="https://api.openai.com/v1"></label>
+            <label>API Key<input id="apiKey" placeholder="${OPENAI_API_KEY} 或直接填写"></label>
+            <label><span data-i18n="modelId">模型名称</span><input id="modelId" placeholder="gpt-4.1 / claude-3-5-sonnet-latest"></label>
+          </div>
+          <div class="button-row">
+            <button id="loadModel">载入选中</button>
+            <button class="primary" id="saveModel">保存配置</button>
+            <button id="deleteModel">删除选中</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title" data-i18n="configHelp">配置说明</div>
+          <div class="hint-grid">
+            <div><strong>OpenAI Compatible</strong><p data-i18n="openaiHelp">请求路径为 {base_url}/chat/completions，适合 OpenAI、DeepSeek、GLM、Qwen、代理网关等。</p></div>
+            <div><strong>Anthropic</strong><p data-i18n="anthropicHelp">请求路径为 {base_url}/messages，使用 x-api-key 与 anthropic-version。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-datasets">
+        <div class="card">
+          <div class="section-title" data-i18n="datasetFolder">题库目录</div>
+          <p class="muted" data-i18n="datasetHint">每个维度位于 datasets/&lt;dimension&gt;/test_cases.json。在配置中加入 dimensions 条目后会自动出现在左侧。</p>
+          <table>
+            <thead><tr><th data-i18n="dimension">维度</th><th data-i18n="weight">权重</th><th data-i18n="description">说明</th></tr></thead>
+            <tbody id="dimensionRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-reports">
+        <div class="card">
+          <div class="section-title" data-i18n="reportCompare">报告对比</div>
+          <p class="muted" data-i18n="reportHint">读取输出目录中的 *_full_report.json，生成 leaderboard.json 和 leaderboard.html。</p>
+          <div class="button-row">
+            <button class="primary" id="compareReports" data-i18n="generateCompare">生成对比报告</button>
+            <button id="openOutput" data-i18n="openOutput">打开输出目录</button>
+          </div>
+          <pre id="reportLog"></pre>
+        </div>
+      </section>
+      </div>
+    </main>
+  </div>
+  <script src="./i18n-data.js"></script>
+  <script src="./renderer.js"></script>
+</body>
+</html>

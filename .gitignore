@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# IDE / Editor
+.claude/
+.DS_Store
+
+# Test artifacts
+smoke-results/
+smoke-user-data/
+
+# Runtime user data (contains models.json with potential API keys)
+.llm-eval-switch/
+
+# Environment files (may contain API keys)
+.env
+.env.*
+*.local
+
+# Log files
+*.log
+
+# Backup files
+*.bak
+*.bak2
+
+# OS files
+Thumbs.db

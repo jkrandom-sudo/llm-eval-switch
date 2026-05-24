@@ -1,0 +1,57 @@
+[
+  {
+    "id": "retr-0001",
+    "dimension": "retrieval_qa",
+    "subcategory": "multi_fact",
+    "difficulty": "medium",
+    "task_type": "retrieval",
+    "context": "项目 Alpha 在 Q1 收入 120 万，Q2 收入 156 万。项目 Beta 在 Q1 收入 98 万，Q2 收入 101 万。Alpha 的主要风险是供应链延迟。",
+    "prompt": "阅读资料：项目 Alpha 在 Q1 收入 120 万，Q2 收入 156 万。项目 Beta 在 Q1 收入 98 万，Q2 收入 101 万。Alpha 的主要风险是供应链延迟。\n\n问：Alpha Q2 收入是多少？主要风险是什么？",
+    "reference_answer": "156 万；供应链延迟",
+    "key_facts": ["156", "供应链延迟"]
+  },
+  {
+    "id": "retr-0002",
+    "dimension": "retrieval_qa",
+    "subcategory": "needle",
+    "difficulty": "medium",
+    "task_type": "needle_in_haystack",
+    "context": "普通段落 A。普通段落 B。内部追踪码为 ZX-91-KAPPA。普通段落 C。",
+    "prompt": "在以下文本中找出内部追踪码：普通段落 A。普通段落 B。内部追踪码为 ZX-91-KAPPA。普通段落 C。",
+    "needle": "ZX-91-KAPPA",
+    "reference_answer": "ZX-91-KAPPA"
+  },
+  {
+    "id": "retr-0003",
+    "dimension": "retrieval_qa",
+    "subcategory": "conflicting_sources",
+    "difficulty": "hard",
+    "task_type": "retrieval",
+    "context": "备忘录 1 说上线日期是 6 月 10 日。备忘录 2 更新说明上线日期改为 6 月 17 日，原因是安全审计延期。",
+    "prompt": "阅读资料：备忘录 1 说上线日期是 6 月 10 日。备忘录 2 更新说明上线日期改为 6 月 17 日，原因是安全审计延期。\n\n问：最新上线日期是什么？变更原因是什么？",
+    "reference_answer": "6 月 17 日；安全审计延期",
+    "key_facts": ["6 月 17", "安全审计"]
+  },
+  {
+    "id": "retr-0004",
+    "dimension": "retrieval_qa",
+    "subcategory": "grounded_summary",
+    "difficulty": "medium",
+    "task_type": "retrieval",
+    "context": "调研显示，用户最常抱怨三点：启动慢、搜索结果不准确、离线模式不稳定。正向反馈集中在界面清晰和同步速度快。",
+    "prompt": "根据资料列出用户抱怨的三个问题：调研显示，用户最常抱怨三点：启动慢、搜索结果不准确、离线模式不稳定。正向反馈集中在界面清晰和同步速度快。",
+    "reference_answer": "启动慢；搜索结果不准确；离线模式不稳定",
+    "key_facts": ["启动慢", "搜索结果不准确", "离线模式不稳定"]
+  },
+  {
+    "id": "retr-0005",
+    "dimension": "retrieval_qa",
+    "subcategory": "numeric_context",
+    "difficulty": "medium",
+    "task_type": "qa",
+    "answer_type": "numeric",
+    "context": "A 组完成 42 个任务，B 组完成 37 个任务，C 组完成 21 个任务。",
+    "prompt": "根据资料回答总任务数：A 组完成 42 个任务，B 组完成 37 个任务，C 组完成 21 个任务。",
+    "reference_answer": "100"
+  }
+]

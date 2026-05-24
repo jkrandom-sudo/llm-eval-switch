@@ -1,0 +1,152 @@
+# ============================================================
+# LLM Evaluation Framework v3 — 14 Dimensions × 1000 Questions
+# ============================================================
+
+models:
+  # OpenAI-compatible format: POST {base_url}/chat/completions
+  - name: "openai-compatible-example"
+    api_format: "openai"
+    base_url: "https://api.openai.com/v1"
+    api_key: "${OPENAI_API_KEY}"
+    model_id: "gpt-4.1"
+
+  # Anthropic format: POST {base_url}/messages
+  - name: "anthropic-example"
+    api_format: "anthropic"
+    base_url: "https://api.anthropic.com/v1"
+    api_key: "${ANTHROPIC_API_KEY}"
+    model_id: "claude-3-5-sonnet-latest"
+
+  - name: "deepseek-v4-pro"
+    api_format: "openai"
+    endpoint: "${DEEPSEEK_API_ENDPOINT}"
+    api_key: "${DEEPSEEK_API_KEY}"
+    model_id: "deepseek-chat"
+
+  - name: "deepseek-v4-flash"
+    api_format: "openai"
+    endpoint: "${DEEPSEEK_API_ENDPOINT}"
+    api_key: "${DEEPSEEK_API_KEY}"
+    model_id: "deepseek-chat"
+
+  - name: "glm-5"
+    api_format: "openai"
+    endpoint: "${GLM_API_ENDPOINT}"
+    api_key: "${GLM_API_KEY}"
+    model_id: "glm-5"
+
+evaluation:
+  temperature: 0.0
+  max_tokens: 2048
+  retries: 2
+  timeout: 60
+  concurrency: 1
+
+dimensions:
+  general_knowledge:
+    weight: 0.08
+    dataset: "datasets/general_knowledge/test_cases.json"
+    description: "Multi-domain factual knowledge (50+ subjects, 1000 questions)"
+    scoring: "exact_match_keyword"
+
+  tool_use:
+    weight: 0.07
+    dataset: "datasets/tool_use/test_cases.json"
+    description: "Function calling, tool selection, parameter accuracy (1000 questions)"
+    scoring: "schema_validation"
+
+  math:
+    weight: 0.09
+    dataset: "datasets/math/test_cases.json"
+    description: "Arithmetic to calculus, proofs, optimization (1000 questions)"
+    scoring: "numeric_equivalence"
+
+  reasoning:
+    weight: 0.09
+    dataset: "datasets/reasoning/test_cases.json"
+    description: "Syllogism, puzzles, fallacies, weighing, ordering (1000 questions)"
+    scoring: "step_checking"
+
+  long_context:
+    weight: 0.07
+    dataset: "datasets/long_context/test_cases.json"
+    description: "Needle-in-haystack, retrieval, summarization, QA (1000 questions)"
+    scoring: "position_accuracy"
+
+  multilingual:
+    weight: 0.07
+    dataset: "datasets/multilingual/test_cases.json"
+    description: "7-language translation, understanding, generation (1000 questions)"
+    scoring: "semantic_equivalence"
+
+  coding:
+    weight: 0.08
+    dataset: "datasets/coding/test_cases.json"
+    description: "Algorithms, data structures, OOP, async, decorators (1000 questions)"
+    scoring: "test_execution"
+
+  safety:
+    weight: 0.07
+    dataset: "datasets/safety/test_cases.json"
+    description: "Harmful refusal, jailbreak resistance, boundary detection (1000 questions)"
+    scoring: "refusal_detection"
+
+  creative_writing:
+    weight: 0.07
+    dataset: "datasets/creative_writing/test_cases.json"
+    description: "Story, poetry, dialogue, ad copy, speech, letters (1000 questions)"
+    scoring: "element_coverage"
+
+  instruction_following:
+    weight: 0.07
+    dataset: "datasets/instruction_following/test_cases.json"
+    description: "Multi-constraint format, content, length compliance (1000 questions)"
+    scoring: "constraint_count"
+
+  data_analysis:
+    weight: 0.07
+    dataset: "datasets/data_analysis/test_cases.json"
+    description: "Table interpretation, trend analysis, statistics (1000 questions)"
+    scoring: "numeric_accuracy"
+
+  code_review:
+    weight: 0.06
+    dataset: "datasets/code_review/test_cases.json"
+    description: "Bug detection, security audit, performance review (1000 questions)"
+    scoring: "issue_recall"
+
+  counterfactual_reasoning:
+    weight: 0.06
+    dataset: "datasets/counterfactual_reasoning/test_cases.json"
+    description: "Hypothetical scenarios, what-if analysis (1000 questions)"
+    scoring: "consistency_premise"
+
+  domain_expertise:
+    weight: 0.05
+    dataset: "datasets/domain_expertise/test_cases.json"
+    description: "Law, medicine, finance, engineering expertise (1000 questions)"
+    scoring: "terminology_factual"
+
+  structured_output:
+    weight: 0.06
+    dataset: "datasets/structured_output/test_cases.json"
+    description: "Strict JSON, schema-like output, tables, and machine-readable formatting"
+    scoring: "constraint_count"
+
+  robustness:
+    weight: 0.06
+    dataset: "datasets/robustness/test_cases.json"
+    description: "Ambiguity handling, contradiction detection, prompt noise, and uncertainty calibration"
+    scoring: "constraint_count"
+
+  agent_planning:
+    weight: 0.06
+    dataset: "datasets/agent_planning/test_cases.json"
+    description: "Task decomposition, dependency ordering, risk identification, and operational planning"
+    scoring: "keyword_overlap"
+
+  retrieval_qa:
+    weight: 0.06
+    dataset: "datasets/retrieval_qa/test_cases.json"
+    description: "Document-grounded QA, citation discipline, and multi-evidence retrieval"
+    scoring: "key_facts"

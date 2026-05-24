@@ -1,0 +1,47 @@
+[
+  {
+    "id": "agen-0001",
+    "dimension": "agent_planning",
+    "subcategory": "migration_plan",
+    "difficulty": "medium",
+    "prompt": "为一个从 MySQL 迁移到 PostgreSQL 的项目制定 5 步执行计划，需包含备份、兼容性检查、灰度和回滚。",
+    "scoring_method": "keyword_overlap",
+    "keywords": ["备份", "兼容", "灰度", "回滚", "验证"]
+  },
+  {
+    "id": "agen-0002",
+    "dimension": "agent_planning",
+    "subcategory": "incident_response",
+    "difficulty": "medium",
+    "prompt": "线上接口错误率突然升高，请给出排障计划。必须覆盖监控、日志、最近变更、缓解措施。",
+    "scoring_method": "keyword_overlap",
+    "keywords": ["监控", "日志", "变更", "缓解", "回滚"]
+  },
+  {
+    "id": "agen-0003",
+    "dimension": "agent_planning",
+    "subcategory": "research_plan",
+    "difficulty": "hard",
+    "prompt": "要评估一个 RAG 系统，请设计实验计划。必须包含数据集、检索指标、生成质量、人工复核和消融实验。",
+    "scoring_method": "keyword_overlap",
+    "keywords": ["数据集", "检索", "生成", "人工", "消融"]
+  },
+  {
+    "id": "agen-0004",
+    "dimension": "agent_planning",
+    "subcategory": "dependency_ordering",
+    "difficulty": "medium",
+    "prompt": "安排一次移动 App 发布流程，要求按依赖顺序列出：测试、构建、审核、灰度、监控。",
+    "scoring_method": "keyword_overlap",
+    "keywords": ["测试", "构建", "审核", "灰度", "监控"]
+  },
+  {
+    "id": "agen-0005",
+    "dimension": "agent_planning",
+    "subcategory": "risk_management",
+    "difficulty": "hard",
+    "prompt": "为一次支付系统重构制定计划，需指出至少 4 类风险和对应缓解策略。",
+    "scoring_method": "keyword_overlap",
+    "keywords": ["风险", "数据", "一致性", "回滚", "监控", "压测"]
+  }
+]

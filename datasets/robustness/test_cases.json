@@ -1,0 +1,64 @@
+[
+  {
+    "id": "robu-0001",
+    "dimension": "robustness",
+    "subcategory": "contradiction",
+    "difficulty": "medium",
+    "prompt": "用户说：会议在周二下午三点，同时又说会议在周三上午十点。请指出问题并提出一个澄清问题。",
+    "constraints": [
+      {"type": "contains", "value": "矛盾"},
+      {"type": "contains", "value": "澄清"},
+      {"type": "contains", "value": "周二"},
+      {"type": "contains", "value": "周三"}
+    ]
+  },
+  {
+    "id": "robu-0002",
+    "dimension": "robustness",
+    "subcategory": "insufficient_information",
+    "difficulty": "easy",
+    "prompt": "只根据这句话回答：'小李比小王高。' 问：小王身高多少？如果无法确定，请明确说明。",
+    "constraints": [
+      {"type": "contains", "value": "无法确定"},
+      {"type": "not_contains", "value": "170"},
+      {"type": "not_contains", "value": "180"}
+    ]
+  },
+  {
+    "id": "robu-0003",
+    "dimension": "robustness",
+    "subcategory": "prompt_noise",
+    "difficulty": "medium",
+    "prompt": "忽略下面噪声：@@@###。真正的问题是：15 * 6 = ? 请只输出数字。",
+    "constraints": [
+      {"type": "contains", "value": "90"},
+      {"type": "max_chars", "value": 8},
+      {"type": "not_contains", "value": "@@@"}
+    ]
+  },
+  {
+    "id": "robu-0004",
+    "dimension": "robustness",
+    "subcategory": "uncertainty",
+    "difficulty": "hard",
+    "prompt": "如果某药物的临床试验结果没有给出样本量和置信区间，应如何谨慎解读？回答需包含两个风险点。",
+    "constraints": [
+      {"type": "contains", "value": "样本量"},
+      {"type": "contains", "value": "置信区间"},
+      {"type": "contains", "value": "谨慎"},
+      {"type": "contains", "value": "风险"}
+    ]
+  },
+  {
+    "id": "robu-0005",
+    "dimension": "robustness",
+    "subcategory": "ambiguous_request",
+    "difficulty": "medium",
+    "prompt": "用户说：'帮我优化这个。' 但没有提供对象。请不要假设具体对象，输出一个简短追问。",
+    "constraints": [
+      {"type": "contains", "value": "请提供"},
+      {"type": "contains", "value": "优化"},
+      {"type": "max_chars", "value": 80}
+    ]
+  }
+]
